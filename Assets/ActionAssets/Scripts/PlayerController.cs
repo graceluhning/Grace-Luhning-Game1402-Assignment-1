@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
 
-   [SerializeField] private float jumpForce = 10;
+   [SerializeField] private float jumpForce = 5;
    
    [SerializeField] private InputManager inputManager;
    
