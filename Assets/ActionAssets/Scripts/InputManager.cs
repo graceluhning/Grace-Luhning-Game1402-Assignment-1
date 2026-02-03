@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
     void OnEnable()
     {
         _playerInputActions.Player.Jump.performed += OnJumpPressed;
-       // _playerInputActions.Player.Horizontal.performed += OnMovement;
+        // _playerInputActions.Player.Horizontal.performed += OnMovement;
     }
 
     void OnDisable()
@@ -43,4 +43,3 @@ public class InputManager : MonoBehaviour
     }
 
 }
-      

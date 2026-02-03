@@ -8,10 +8,12 @@ public class Collectibles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) // only collect if player is the collider
         {
             AudioSource.PlayClipAtPoint(pickupSound, transform.position); // play sound
             Destroy(gameObject); // destroy collectible
+            
+            ScoreManager.Instance.AddPoints(points); // add points to Score
         }
     }
 }
