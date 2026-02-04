@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     
     {
-        if (scoreText != null)
+        if (scoreText != null) // set scoretext format
         {
             scoreText.text = "SCORE: " + Score;
         }
@@ -29,13 +29,13 @@ public class ScoreManager : MonoBehaviour
 
     public void AddPoints(int amount) // when coin collected, get points
     {
-        // increases score by 1
+        
         Score += amount;
         
-        // update score text
+       
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + Score;
+            scoreText.text = "SCORE: " + Score; // Score text format
         }
     }
 }

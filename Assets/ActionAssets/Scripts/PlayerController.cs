@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _playerRb;
     private bool _isOnGround;
 
+    private int maxJumps = 2;
+    private int remainingJumps;
+
     void Awake()
     {
         _playerRb = GetComponent<Rigidbody2D>();
@@ -37,11 +40,17 @@ public class PlayerController : MonoBehaviour
 
     void HandleJumpInput()
     {
+        remainingJumps--;
         // apply the jump force
         if (_playerRb == null) return;
 
         if (_isOnGround)
+            remainingJumps = maxJumps;
+
+        if (remainingJumps > 0)
+        {
             _playerRb.AddForceY(jumpForce, ForceMode2D.Impulse);
+        }
     }
 
     void HandleMoveInput(float value)
@@ -65,7 +74,8 @@ public class PlayerController : MonoBehaviour
 
     void GroundCheck()
     {
-        _isOnGround = Physics2D.Raycast(
+        _isOnGround = Physics2D.Raycast
+        (
             (Vector2)transform.position + startPointOffset,
             Vector2.down,
             groundCheckDistance,
@@ -73,19 +83,13 @@ public class PlayerController : MonoBehaviour
         );
     }
 
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-    }
-
+   
     void OnDrawGizmos()
     {
-        Debug.DrawLine(
+        Debug.DrawLine
+        (
             (Vector2)transform.position + startPointOffset,
-            (Vector2)transform.position + startPointOffset + Vector2.down,
+            (Vector2)transform.position + startPointOffset + Vector2.down *  groundCheckDistance,
             _isOnGround ? Color.green : Color.red
         );
     }

@@ -8,32 +8,21 @@ public class KillPlayer : MonoBehaviour
     public Lives livesScript;
 
     public Transform respawnPoint;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) // ensure "player" is the object colliding with the enemy
         {
-            player.transform.position = respawnPoint.position;
+            player.transform.position = respawnPoint.position; // Move player back to respawn point
 
             if (livesScript != null)
             {
-                livesScript.playerLostLife();
+                livesScript.playerLostLife(); // if there is a lives script, run lose life script
             }
 
             else
             {
-                Debug.LogWarning("Lives Script Unassigned");
+                Debug.LogWarning("Lives Script Unassigned"); // debug for if no lives script assigned.
                 
             }
         }

@@ -8,14 +8,13 @@ public class MovingPlatformScript : MonoBehaviour
     public float moveSpeed = 2f;
 
     private Vector3 nextPosition;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    void Start() // on start, move towards PointA
     {
         nextPosition = pointA.position;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void Update() // logic for movement between waypoints.
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, moveSpeed * Time.deltaTime);
 
@@ -26,7 +25,7 @@ public class MovingPlatformScript : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) // makes it so the player becomes a child of the platform and moves with it.
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -34,7 +33,7 @@ public class MovingPlatformScript : MonoBehaviour
         }
     }
     
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision) // removes player as child when they jump off.
     {
         if (collision.gameObject.CompareTag("Player"))
         {
