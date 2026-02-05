@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _playerRb;
     private bool _isOnGround;
 
-    private int maxJumps = 2;
-    private int remainingJumps;
+    private int maxJumps = 2; // maximum jumps
+    private int remainingJumps; // jumps left
 
     void Awake()
     {
@@ -40,14 +40,15 @@ public class PlayerController : MonoBehaviour
 
     void HandleJumpInput()
     {
-        remainingJumps--;
+        remainingJumps--; // remove a remaining jump after each jump
+        
         // apply the jump force
         if (_playerRb == null) return;
 
         if (_isOnGround)
-            remainingJumps = maxJumps;
+            remainingJumps = maxJumps; // reset jumps to max when ground hit
 
-        if (remainingJumps > 0)
+        if (remainingJumps > 0) // if more than 0 jumps left, apply jump force
         {
             _playerRb.AddForceY(jumpForce, ForceMode2D.Impulse);
         }
